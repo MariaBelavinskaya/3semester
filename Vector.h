@@ -32,6 +32,8 @@ namespace Miit::Vector
 		@brief Удаление элемента из вектора по индексу элемента
 		@param index Индекс элемента
 		*/
+
+
 		void deleteI(T index);
 
 		/*
