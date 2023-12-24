@@ -35,27 +35,27 @@ namespace Miit::Vector
 		*/
 
 
-		void deleteI(T index);
+		void deleteI(size_t index);
 
 		/*
 		@brief Ïîëó÷åíèå èíäåêñà ýëåìåíòà â âåêòîðå
 		@param value Ýëåìåíò êîòîðûé ìû èùåì
 		@return Èíäåêñ ýëåìåíòà â âåêòîðå, âåðíåò -1, åñëè ýëåìåíòà â âåêòîðå íåò
 		*/
-		T findI(T value) const;
+		size_t findI(T value) const;
 
 		/*
 		@brief Ïðîâåðêà íà îòñóòñòâèå ýëåìåíòîâ â âåêòîðå
 		@return true åñëè ýëåìåíòîâ íåò è false åñëè îíè åñòü
 		*/
-		bool isEmpty() const;
+		bool isEmpty() const noexcept;
 
 		/*
 		@brief Ïåðåãðóçêà îïåðàòîðà êâàäðàòíûõ ñêîáîê
 		@param index Èíäåêñ ýëåìåíòà â âåêòîðå
 		@return Ýëåìåíò èç âåêòîðà ïî çàäàííîìó èíäåêñó
 		*/
-		T& operator[](T index);
+		T& operator[](size_t index);
 
 		/*
 		@brief Ïåðåãðóçêà îïåðàòîðà êîïèðîâàíèÿ
@@ -69,7 +69,7 @@ namespace Miit::Vector
 		@param Vector Âåêòîð äëÿ ïåðåìåùåíèÿ
 		@return Âåêòîð
 		*/
-		Vector& operator=(Vector&& vector) noexcept;
+		Vector& operator=(Vector&& vector);
 
 		/*
 		@brief Ïåðåãðóçêà êîíñòðóêòîðà ïåðåìåùåíèÿ
@@ -81,14 +81,14 @@ namespace Miit::Vector
 		@brief Ïåðåãðóçêà êîíñòðóêòîðà êîïèðîâàíèÿ
 		@param vector Âåêòîð äëÿ êîïèðîâàíèÿ
 		*/
-		Vector(Vector&& vector) noexcept;
+		Vector(Vector&& vector);
 
 		/*
 		@brief Ïåðåãðóçêà îïåðàòîðà âûâîäà
 		@param os Ïîòîê âûâîäà
 		@param vector Âåêòîð äëÿ âûâîäà
 		*/
-		friend std::ostream& operator<<(std::ostream& os, Vector& vector) noexcept;
+		friend std::ostream& operator<<(std::ostream& os, Vector& vector);
 
 		/*
 		@brief Ïåðåãðóçêà îïåðàòîðà ðàâíî
@@ -96,7 +96,7 @@ namespace Miit::Vector
 		@param lha Âòîðîé àðãóìåíò äëÿ ñðàâíåíèÿ
 		@return false - åñëè ðàâíû, true - åñëè íå ðàâíû
 		*/
-		friend bool operator==(const Vector& rha, const Vector& lha) noexcept;
+		friend bool operator==(const Vector& rha, const Vector& lha);
 
 		/*
 		@brief Ïåðåãðóçêà îïåðàòîðà íå ðàâíî
@@ -104,13 +104,13 @@ namespace Miit::Vector
 		@param lha Âòîðîé àðãóìåíò äëÿ ñðàâíåíèÿ
 		@return true - åñëè ðàâíû, false - åñëè íå ðàâíû
 		*/
-		friend bool operator!=(const Vector& rha, const Vector& lha) noexcept;
+		friend bool operator!=(const Vector& rha, const Vector& lha);
 
 		/*
 		@brief Ïðåîáðàçîâàíèå îáúåòà â ñòðîêó
 		@return Ñòðîêà èç îáúåêòà
 		*/
-		std::string toString() const noexcept;
+		std::string toString() const noexcept
 
 	private:
 		size_t size;
