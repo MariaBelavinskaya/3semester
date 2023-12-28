@@ -3,7 +3,7 @@
 #include <ostream>
 #include <iostream>
 #include <sstream>
-setlocale( LC_ALL, "RUS" );
+setlocale(LC_ALL, "RUS");
 
 namespace Miit::Vector
 {
@@ -12,105 +12,105 @@ namespace Miit::Vector
 	{
 	public:
 		/*
-		@brief Èíèöèàëèçàöèÿ íîâîãî ýêçåìïëÿðà òèïà vector ñ ïîìîùüþ initializer_list
-		@param list Ëèñò ñ ïîìîùüþ êîòîðãî áóäåò ñîçäàí vector
+		@brief Инициализация нового экземпляра типа vector с помощью initializer_list
+		@param list Лист с помощью которго будет создан vector
 		*/
 		
 		Vector(const std::initializer_list<T> list);
 
 		/*
-		@brief Óäàëÿåò, ÷èñòèò ïàìÿòü ïîñëå âåêòîðà
+		@brief Удаляет, чистит память после вектора
 		*/
 		~Vector();
 
 		/*
-		@brief Ïîëó÷åíèå êîëëè÷åñòâà ýëåìåíòîâ â âåêòîðå
-		@return Êîëëè÷åñòâî ýëåìåíòîâ â âåêòîðå
+		@brief Получение колличества элементов в векторе
+		@return Колличество элементов в векторе
 		*/
 		T getSize() const;
 
 		/*
-		@brief Óäàëåíèå ýëåìåíòà èç âåêòîðà ïî èíäåêñó ýëåìåíòà
-		@param index Èíäåêñ ýëåìåíòà
+		@brief Удаление элемента из вектора по индексу элемента
+		@param index Индекс элемента
 		*/
 
 
 		void deleteI(size_t index);
 
 		/*
-		@brief Ïîëó÷åíèå èíäåêñà ýëåìåíòà â âåêòîðå
-		@param value Ýëåìåíò êîòîðûé ìû èùåì
-		@return Èíäåêñ ýëåìåíòà â âåêòîðå, âåðíåò -1, åñëè ýëåìåíòà â âåêòîðå íåò
+		@brief Получение индекса элемента в векторе
+		@param value Элемент который мы ищем
+		@return Индекс элемента в векторе, вернет -1, если элемента в векторе нет
 		*/
 		size_t findI(T value) const;
 
 		/*
-		@brief Ïðîâåðêà íà îòñóòñòâèå ýëåìåíòîâ â âåêòîðå
-		@return true åñëè ýëåìåíòîâ íåò è false åñëè îíè åñòü
+		@brief Проверка на отсутствие элементов в векторе
+		@return true если элементов нет и false если они есть
 		*/
-		bool isEmpty() const noexcept;
+		bool isEmpty() const;
 
 		/*
-		@brief Ïåðåãðóçêà îïåðàòîðà êâàäðàòíûõ ñêîáîê
-		@param index Èíäåêñ ýëåìåíòà â âåêòîðå
-		@return Ýëåìåíò èç âåêòîðà ïî çàäàííîìó èíäåêñó
+		@brief Перегрузка оператора квадратных скобок
+		@param index Индекс элемента в векторе
+		@return Элемент из вектора по заданному индексу
 		*/
 		T& operator[](size_t index);
 
 		/*
-		@brief Ïåðåãðóçêà îïåðàòîðà êîïèðîâàíèÿ
-		@param Vector Âåêòîð êîòîðûé áóäåò ñêîïèðîâàí
-		@return Ñêîïèðîâàííûé Vector
+		@brief Перегрузка оператора копирования
+		@param Vector Вектор который будет скопирован
+		@return Скопированный Vector
 		*/
 		Vector& operator=(const Vector& vector);
 
 		/*
-		@brief Ïåðåãðóçêà îïåðàòîðà ïåðåìåùåíèÿ
-		@param Vector Âåêòîð äëÿ ïåðåìåùåíèÿ
-		@return Âåêòîð
+		@brief Перегрузка оператора перемещения
+		@param Vector Вектор для перемещения
+		@return Вектор
 		*/
-		Vector& operator=(Vector&& vector);
+		Vector& operator=(Vector&& vector) noexcept;
 
 		/*
-		@brief Ïåðåãðóçêà êîíñòðóêòîðà ïåðåìåùåíèÿ
-		@param vector Âåêòîð äëÿ ïåðåìåùíèÿ
+		@brief Перегрузка конструктора перемещения
+		@param vector Вектор для перемещния
 		*/
 		Vector(const Vector& vector);
 
 		/*
-		@brief Ïåðåãðóçêà êîíñòðóêòîðà êîïèðîâàíèÿ
-		@param vector Âåêòîð äëÿ êîïèðîâàíèÿ
+		@brief Перегрузка конструктора копирования
+		@param vector Вектор для копирования
 		*/
-		Vector(Vector&& vector);
+		Vector(Vector&& vector) noexcept;
 
 		/*
-		@brief Ïåðåãðóçêà îïåðàòîðà âûâîäà
-		@param os Ïîòîê âûâîäà
-		@param vector Âåêòîð äëÿ âûâîäà
+		@brief Перегрузка оператора вывода
+		@param os Поток вывода
+		@param vector Вектор для вывода
 		*/
 		friend std::ostream& operator<<(std::ostream& os, Vector& vector);
 
 		/*
-		@brief Ïåðåãðóçêà îïåðàòîðà ðàâíî
-		@param rha Ïåðâûé àðãóìåíò äëÿ ñðàâíåíèÿ
-		@param lha Âòîðîé àðãóìåíò äëÿ ñðàâíåíèÿ
-		@return false - åñëè ðàâíû, true - åñëè íå ðàâíû
+		@brief Перегрузка оператора равно
+		@param rha Первый аргумент для сравнения
+		@param lha Второй аргумент для сравнения
+		@return false - если равны, true - если не равны
 		*/
-		friend bool operator==(const Vector& rha, const Vector& lha);
+		friend bool operator==(const Vector& rha, const Vector& lha) noexcept;
 
 		/*
-		@brief Ïåðåãðóçêà îïåðàòîðà íå ðàâíî
-		@param rha Ïåðâûé àðãóìåíò äëÿ ñðàâíåíèÿ
-		@param lha Âòîðîé àðãóìåíò äëÿ ñðàâíåíèÿ
-		@return true - åñëè ðàâíû, false - åñëè íå ðàâíû
+		@brief Перегрузка оператора не равно
+		@param rha Первый аргумент для сравнения
+		@param lha Второй аргумент для сравнения
+		@return true - если равны, false - если не равны
 		*/
-		friend bool operator!=(const Vector& rha, const Vector& lha);
+		friend bool operator!=(const Vector& rha, const Vector& lha) noexcept;
 
 		/*
-		@brief Ïðåîáðàçîâàíèå îáúåòà â ñòðîêó
-		@return Ñòðîêà èç îáúåêòà
+		@brief Преобразование объета в строку
+		@return Строка из объекта
 		*/
-		std::string toString() const noexcept
+		std::string toString() const noexcept;
 
 	private:
 		size_t size;
